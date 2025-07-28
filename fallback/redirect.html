@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      window.onload = function () {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Detect Android
+      if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.dipesh.minigamezone";
+      }
+      // Detect iOS
+      else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://apps.apple.com/app/id1622186607"; 
+      }
+      // Other platforms (desktop, etc.)
+      else {
+        window.location.href = "https://ghimiredipesh.com.np/"; 
+      }
+    };
+    </script>
+  </head>
+  <body>
+    <p>Redirecting....</p>
+  </body>
+</html>

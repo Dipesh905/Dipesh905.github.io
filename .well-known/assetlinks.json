@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dipesh.minigamezone",
+      "sha256_cert_fingerprints": [
+        "3B:63:0A:7E:C9:9C:C7:21:DD:D3:15:17:17:81:66:71:2E:3C:F9:64:3B:04:5A:3B:CC:1F:B1:9D:C9:FC:8A:79"
+      ]
+    }
+  }
+]

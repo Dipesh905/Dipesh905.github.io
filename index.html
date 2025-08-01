@@ -1,57 +1,455 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dipesh Ghimire - Portfolio</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f8f8;
+      color: #222;
+      line-height: 1.6;
+      padding: 30px 15px;
+      max-width: 900px;
+      margin: auto;
+    }
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    /* Centered Profile */
+    .profile-container {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  
+    .profile-container img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+    }
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+    .profile-container h1 {
+      margin-top: 12px;
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: #111;
+    }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="my_portfolio_website">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    .profile-container h2 {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #555;
+      margin-top: 4px;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+    /* Section titles */
+    h3.section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      border-bottom: 3px solid #3b82f6; /* blue underline */
+      padding-bottom: 4px;
+      color: #1e40af;
+      margin-top: 40px;
+    }
 
-  <title>my_portfolio_website</title>
-  <link rel="manifest" href="manifest.json">
+    /* About Me text */
+    .about-text {
+      font-size: 1rem;
+      color: #333;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = "1659677727";
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+    /* Skills Section */
+    .skills-description {
+      font-size: 1rem;
+      margin-bottom: 18px;
+      color: #333;
+    }
+
+    /* Skill bar container */
+    .skill {
+      margin-bottom: 16px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      color: #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Progress bar background */
+    .progress-bar-bg {
+      width: 100%;
+      height: 14px;
+      background-color: #ddd;
+      border-radius: 7px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Progress bar fill */
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #22c55e; /* green */
+      border-radius: 7px 0 0 7px;
+      transition: width 1.2s ease-in-out;
+    }
+
+    /* Emoji styling */
+    .emoji {
+      margin-left: 6px;
+      font-size: 1.2rem;
+    }
+
+    /* Education Section */
+    .education-text {
+        font-size: 1rem;
+        margin-bottom: 18px;
+        color: #333;
+    }
+
+    .education-item {
+        margin-bottom: 20px;
+    }
+
+    .education-item h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #222;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .education-item p {
+        font-size: 0.9rem;
+        color: #555;
+    }
+    
+    /* Knowledge Section */
+    .knowledge-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .knowledge-tag {
+      background-color: #e0f2fe;
+      color: #0c4a6e;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid #90cdf4;
+    }
+
+    /* Contact Me Section */
+    .contact-text {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .contact-item {
+      margin-bottom: 12px;
+    }
+
+    .contact-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .contact-item p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Social Links */
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .social-links a {
+      color: #222;
+      font-size: 2rem;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      color: #3b82f6;
+    }
+
+    /* Projects Section */
+    .project-item {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .project-item:hover {
+      box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+    }
+    
+    .project-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #111;
+    }
+    
+    .project-item p {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 15px;
+    }
+    
+    .project-link {
+      font-size: 0.95rem;
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .project-link:hover {
+      text-decoration: underline;
+      color: #1e40af;
+    }
+
+    /* Footer Section */
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 12px;
+      }
+      .profile-container img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/C4sD1N7xL6T7i3I/kC5q9/l5B2f6z5z5g+n5s5aV4I7a0e3J/hD5d5aV5j3d5/g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
+  <div class="profile-container">
+    <img src="images/image.webp" alt="Dipesh Ghimire" />
+    <h1>Er. Dipesh Ghimire</h1>
+    <h2>Mobile App Developer</h2>
+  </div>
+
+  <section>
+    <h3 class="section-title">About Me</h3>
+    <p class="about-text">
+      Hello, I'm Dipesh Ghimire, a mid-level Flutter developer with over 3 years of experience building cross-platform mobile apps that are both scalable and visually engaging. I have a strong grasp of UI design, API integration, and state management—primarily using Riverpod.
+      <br /><br />
+      I prioritize writing clean, modular, and maintainable code. My strong foundation in Object-Oriented Programming (OOP) allows me to build reusable components that support efficient, long-term development.
+      <br /><br />
+      I’ve also published 4 apps on the Play Store, handling everything from development to deployment. I’m passionate about delivering high-quality, reliable products with minimal bugs by carefully handling every edge case and always open to new opportunities to grow and contribute.
+      <br /><br />
+      I am currently contributing to various banking applications in Nepal, as well as the Fonepoints app, at F1Soft International Pvt Ltd.
+    </p>
+  </section>
+
+  <section>
+    <h3 class="section-title">My Skills</h3>
+    <p class="skills-description">
+      A passionate Software Developer <span class="emoji">🚀</span> having an experience of building Mobile applications with Flutter, Dart and some other cool libraries and frameworks.
+    </p>
+
+    <div class="skill">
+      <div class="skill-name">
+        <span>Flutter</span>
+        <span>95%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" data-progress="95"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">
+        <span>Dart</span>
+        <span>90%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" data-progress="90"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">
+        <span>git, Github, Gitlab</span>
+        <span>90%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" data-progress="90"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">
+        <span>Communication</span>
+        <span>95%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" data-progress="95"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-title">Education</h3>
+    <p class="education-text">
+      I have completed my Bachelor in Engineering from Nepal Engineering College affiliated to Pokhara University on 2021
+    </p>
+    <div class="education-item">
+      <h4>
+        <span>Bachelor In Electronics And Communication Engineering</span>
+        <span>Dec 2016 - Aug 2021</span>
+      </h4>
+      <p>Nepal Engineering College, ChanguNarayan(Bhaktapur)</p>
+    </div>
+    <div class="education-item">
+      <h4>
+        <span>SLC/ +2 Science</span>
+        <span>May 2013 - Apr 2016</span>
+      </h4>
+      <p>Shree Satyawati Secondary School, Damauli(Tanahun)</p>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-title">Knowledge</h3>
+    <div class="knowledge-tags">
+      <span class="knowledge-tag">Flutter</span>
+      <span class="knowledge-tag">Dart</span>
+      <span class="knowledge-tag">Firebase</span>
+      <span class="knowledge-tag">SDLC</span>
+      <span class="knowledge-tag">Figma</span>
+      <span class="knowledge-tag">UI/UX</span>
+      <span class="knowledge-tag">MVC</span>
+      <span class="knowledge-tag">PostMan</span>
+      <span class="knowledge-tag">Aurdino</span>
+      <span class="knowledge-tag">git</span>
+      <span class="knowledge-tag">Github</span>
+      <span class="knowledge-tag">Gitlab</span>
+      <span class="knowledge-tag">Python</span>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-title">My Projects</h3>
+    <p class="skills-description">
+      Throughout my app development journey, I have cultivated a diverse portfolio of projects, including freelance collaborations, company assignments, and personal initiatives.
+    </p>
+
+    <div class="project-item">
+      <h4>PU Engineering Syllabus</h4>
+      <p>
+        An educational app designed to support engineering students from Pokhara University-affiliated colleges by providing syllabus, credit hours, and detailed subject content. It’s a helpful tool for both internal and board exam preparation, with over 5,000 downloads.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.dipesh.syllabus" class="project-link" target="_blank" rel="noopener noreferrer">Click here to view</a>
+    </div>
+
+    <div class="project-item">
+      <h4>Hamro Loksewa App</h4>
+      <p>
+        Hamro Loksewa App is a Application developed with a aim to provide resource material for Loksewa Preparation Students. We are trying to organize all Loksewa preparation resources within a single app that will help any loksewa aspirant to prepare for loksewa in better and efficient way.with over 5,00 downloads.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.dipesh.hamroloksewaapp" class="project-link" target="_blank" rel="noopener noreferrer">Click here to view</a>
+    </div>
+
+    <div class="project-item">
+      <h4>Mini Game Zone</h4>
+      <p>
+        Welcome to Mini Game Zone, the ultimate hub for fun, addictive, and easy-to-play offline games — all packed into one lightweight gaming app! Whether you’re into quick reflexes, lucky spins, or coin collecting, Mini Game Zone has something for everyone.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.dipesh.minigamezone" class="project-link" target="_blank" rel="noopener noreferrer">Click here to view</a>
+    </div>
+
+    <div class="project-item">
+      <h4>Students Bazzar Nepal</h4>
+      <p>
+        Students Bazzar Nepal is an e-commerce app designed for students to both buy and sell products. The platform streamlines the selling process by handling all transactions and providing sellers with immediate cash upon a successful order.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.dipesh.studentbazzarnepal" class="project-link" target="_blank" rel="noopener noreferrer">Click here to view</a>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-title">Contact Me</h3>
+    <p class="contact-text">
+      Let's build something great together. I'm available for mobile app, web, and software development projects. Feel free to reach out, and I'll get back to you as soon as possible.
+    </p>
+    <div class="contact-item">
+      <h4>Full Name</h4>
+      <p>Dipesh Ghimire</p>
+    </div>
+    <div class="contact-item">
+      <h4>Address</h4>
+      <p>Kathmandu, Nepal</p>
+    </div>
+    <div class="contact-item">
+      <h4>Email</h4>
+      <p>ghimiredipesh5@gmail.com</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Designed & Developed By Dipesh Ghimire</p>
+    <p>&copy; 2020 - 2025</p>
+  </footer>
+
   <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
+    // Animate progress bars on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const bars = document.querySelectorAll('.progress-bar-fill');
+      bars.forEach(bar => {
+        const progress = bar.getAttribute('data-progress');
+        setTimeout(() => {
+          bar.style.width = progress + '%';
+        }, 100);
       });
     });
   </script>
